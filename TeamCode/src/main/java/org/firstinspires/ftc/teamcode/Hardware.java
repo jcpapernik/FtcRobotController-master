@@ -12,10 +12,6 @@ public class Hardware extends DriveConstants
        // rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         lift = hardwareMap.get(DcMotor.class, "lift");
 
-        lift.setPower(1);
-        sleep(500);
-        lift.setPower(-1);
-
 
     }
 }

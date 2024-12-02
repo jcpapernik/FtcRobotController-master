@@ -17,6 +17,14 @@ public class TeleOp extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
+            if (gamepad1.a){
+            robot.lift.setPower(1);
+            }
+            else if (gamepad1.b){
+                robot.lift.setPower(-1);
+
+            }
+
 
         }
     }
