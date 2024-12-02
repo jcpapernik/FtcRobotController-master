@@ -7,6 +7,6 @@ public class Hardware extends DriveConstants{
     public DcMotor fl;
 
     public Hardware(HardwareMap hardwareMap) {
-        fl = hardwareMap.get(DcMotor.class, "front l");
+        fl = hardwareMap.get(DcMotor.class, "frontl");
     }
 }
