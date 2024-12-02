@@ -1,12 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
-@TeleOp
-public class tiefjk extends LinearOpMode {
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp
+public class TeleOp extends LinearOpMode {
     Hardware robot;
     SampleMecanumDrive drive;
 
