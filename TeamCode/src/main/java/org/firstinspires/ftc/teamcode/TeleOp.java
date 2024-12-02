@@ -17,7 +17,7 @@ public class TeleOp extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
-            robot.fl.setPower(1);
+
         }
     }
 }
