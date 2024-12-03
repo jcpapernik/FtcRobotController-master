@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends LinearOpMode {
     Hardware robot;
-    SampleMecanumDrive drive;
+    SampleMecanumDrive driveo;
 
 
     @Override
