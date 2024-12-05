@@ -11,6 +11,7 @@ public class Hardware extends DriveConstants
         rightRear = hardwareMap.get(DcMotor.class, "rightRear");
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         lift = hardwareMap.get(DcMotor.class, "lift");
+        outtake = hardwareMap.get(Servo.class, outtake);
 
 
     }
