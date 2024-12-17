@@ -7,11 +7,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Hardware {
-    public DcMotor leftFront;
-    public DcMotor leftRear;
-    public DcMotor rightRear;
-    public DcMotor rightFront;
-    public  DcMotor lift;
+    public DcMotor leftFront, leftRear, rightRear, rightFront;
+    public DcMotor lift;
     public DcMotor extend;
     public Servo outtake, intakeRotation;
     public CRServo intake;
@@ -26,7 +23,6 @@ public class Hardware {
         outtake = hardwareMap.get(Servo.class, "outtake");
         intakeRotation = hardwareMap.get(Servo.class, "intakeRotation");
         intake = hardwareMap.get(CRServo.class, "intake");
-
 
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);

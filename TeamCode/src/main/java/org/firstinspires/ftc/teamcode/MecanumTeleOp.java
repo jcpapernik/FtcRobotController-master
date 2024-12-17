@@ -26,8 +26,8 @@ public class MecanumTeleOp extends LinearOpMode {
             intakeRotation();
             outtake();
             intake();
-
-    }}
+        }
+    }
     public void lift(){
         if (gamepad1.dpad_up){
             robot.lift.setPower(1);
@@ -57,19 +57,14 @@ public class MecanumTeleOp extends LinearOpMode {
         robot.leftRear.setPower(leftRearPower);
         robot.rightFront.setPower(rightFrontPower);
         robot.rightRear.setPower(rightRearPower);
-
     }
-    public void outtake()
-    {
-        if(gamepad1.a)
-        {
+    public void outtake() {
+        if(gamepad1.a) {
             robot.outtake.setPosition(1);
         }
-        else if(gamepad1.b)
-        {
+        else if(gamepad1.b) {
             robot.outtake.setPosition(0);
         }
-
     }
     public void intakeRotation() {
         if(gamepad1.a) {
@@ -90,7 +85,7 @@ public class MecanumTeleOp extends LinearOpMode {
             robot.intake.setPower(0);
         }
     }
-    }
+}
 
 
 
