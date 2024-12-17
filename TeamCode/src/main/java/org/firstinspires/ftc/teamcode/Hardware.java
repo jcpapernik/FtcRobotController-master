@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -12,8 +13,8 @@ public class Hardware extends DriveConstants {
     public DcMotor rightFront;
     public  DcMotor lift;
     public DcMotor extend;
-
     public Servo outtake, intakeRotation;
+    public CRServo intake;
 
     public Hardware(HardwareMap hardwareMap) {
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
@@ -24,6 +25,8 @@ public class Hardware extends DriveConstants {
         extend = hardwareMap.get(DcMotor.class, "extend");
         outtake = hardwareMap.get(Servo.class, "outtake");
         intakeRotation = hardwareMap.get(Servo.class, "intakeRotation");
+        intake = hardwareMap.get(CRServo.class, "intake");
+
 
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);

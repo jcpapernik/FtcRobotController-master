@@ -34,8 +34,9 @@ public class MecanumTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
             mecanum();
             lift();
-            intake();
+            intakeRotation();
             outtake();
+            intake();
 
     }}
     public void lift(){
@@ -81,18 +82,28 @@ public class MecanumTeleOp extends LinearOpMode {
         }
 
     }
-    public void intake()
-    {
-        if(gamepad1.a)
-        {
+    public void intakeRotation() {
+        if(gamepad1.a) {
             drive.intakeRotation.setPosition(1);
         }
-        else if(gamepad1.b)
-        {
+        else if(gamepad1.b) {
             drive.intakeRotation.setPosition(0);
         }
     }
-
-
-
+    public void intake() {
+        if(gamepad1.right_trigger > 0.5) {
+            drive.intake.setPower(1);
+        }
+        else if (gamepad1.left_trigger>0.5) {
+            drive.intake.setPower(-1);
+        }
+        else{
+            drive.intake.setPower(0);
+        }
     }
+    }
+
+
+
+
+
