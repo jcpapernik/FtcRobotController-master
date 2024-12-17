@@ -8,24 +8,13 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-
 @TeleOp
 public class MecanumTeleOp extends LinearOpMode {
-   // Hardware hardwareMap;
-   Hardware drive;
-
+   Hardware robot;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        // Declare our motors
-       // HardwareMap HardwareMap;
-
-        Hardware drive = new Hardware(hardwareMap);
-
-
-
-        // See the note about this earlier on this page.
+        Hardware robot = new Hardware(hardwareMap);
 
         waitForStart();
 
@@ -41,13 +30,13 @@ public class MecanumTeleOp extends LinearOpMode {
     }}
     public void lift(){
         if (gamepad1.dpad_up){
-            drive.lift.setPower(1);
+            robot.lift.setPower(1);
         }
         else if (gamepad1.dpad_down){
-            drive.lift.setPower(-1);
+            robot.lift.setPower(-1);
         }
         else {
-            drive.lift.setPower(0);
+            robot.lift.setPower(0);
         }
     }
     public void mecanum(){
@@ -64,41 +53,41 @@ public class MecanumTeleOp extends LinearOpMode {
         double rightFrontPower = (y - x - rx) / denominator;
         double rightRearPower = (y + x - rx) / denominator;
 
-        drive.leftFront.setPower(leftFrontPower);
-        drive.leftRear.setPower(leftRearPower);
-        drive.rightFront.setPower(rightFrontPower);
-        drive.rightRear.setPower(rightRearPower);
+        robot.leftFront.setPower(leftFrontPower);
+        robot.leftRear.setPower(leftRearPower);
+        robot.rightFront.setPower(rightFrontPower);
+        robot.rightRear.setPower(rightRearPower);
 
     }
     public void outtake()
     {
         if(gamepad1.a)
         {
-            drive.outtake.setPosition(1);
+            robot.outtake.setPosition(1);
         }
         else if(gamepad1.b)
         {
-            drive.outtake.setPosition(0);
+            robot.outtake.setPosition(0);
         }
 
     }
     public void intakeRotation() {
         if(gamepad1.a) {
-            drive.intakeRotation.setPosition(1);
+            robot.intakeRotation.setPosition(1);
         }
         else if(gamepad1.b) {
-            drive.intakeRotation.setPosition(0);
+            robot.intakeRotation.setPosition(0);
         }
     }
     public void intake() {
         if(gamepad1.right_trigger > 0.5) {
-            drive.intake.setPower(1);
+            robot.intake.setPower(1);
         }
         else if (gamepad1.left_trigger>0.5) {
-            drive.intake.setPower(-1);
+            robot.intake.setPower(-1);
         }
         else{
-            drive.intake.setPower(0);
+            robot.intake.setPower(0);
         }
     }
     }

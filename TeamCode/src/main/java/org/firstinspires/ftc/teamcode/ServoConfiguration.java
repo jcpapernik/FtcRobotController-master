@@ -6,14 +6,22 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp
 public class ServoConfiguration extends LinearOpMode
 {
-  public Servo outtake;
+  Hardware robot;
+
   @Override
-  public void runOpMode()
-  {
+  public void runOpMode() {
+    Hardware robot = new Hardware(hardwareMap);
+    waitForStart();
+
+    if (isStopRequested()) return;
+
     while (opModeIsActive()) {
-      outtake.setPosition(0);
+      if (gamepad1.a) {
+        robot.outtake.setPosition(0);
+      }
+      if (gamepad1.b) {
+        robot.intakeRotation.setPosition(0);
+      }
     }
   }
-
-
 }
