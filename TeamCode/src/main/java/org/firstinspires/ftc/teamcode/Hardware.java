@@ -21,7 +21,7 @@ public class Hardware {
         lift = hardwareMap.get(DcMotor.class, "lift");
         extend = hardwareMap.get(DcMotor.class, "extend");
         outtake = hardwareMap.get(Servo.class, "outtake");
-        intakeRotation = hardwareMap.get(Servo.class, "intakeRotation");
+        intakeRotation = hardwareMap.get(Servo.class, "Intake_Rotation"); // Adjust name to match configuration
         intake = hardwareMap.get(CRServo.class, "intake");
 
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
