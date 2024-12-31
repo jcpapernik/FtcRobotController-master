@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+<<<<<<< Updated upstream
 public class Hardware {
     public DcMotor leftFront, leftRear, rightRear, rightFront;
     public DcMotor lift;
@@ -14,6 +15,14 @@ public class Hardware {
     public CRServo intake;
 
     public Hardware(HardwareMap hardwareMap) {
+=======
+public class Hardware extends DriveConstants
+{
+    public DcMotor leftFront, leftRear, rightRear, rightFront,  lift;
+    public Servo outtake;
+    public Hardware(HardwareMap hardwareMap)
+                      {
+>>>>>>> Stashed changes
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         leftRear = hardwareMap.get(DcMotor.class, "leftRear");
         rightRear = hardwareMap.get(DcMotor.class, "rightRear");
