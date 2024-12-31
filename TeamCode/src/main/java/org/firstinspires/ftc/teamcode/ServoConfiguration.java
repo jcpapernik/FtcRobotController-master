@@ -10,18 +10,28 @@ public class ServoConfiguration extends LinearOpMode
 
   @Override
   public void runOpMode() {
-    Hardware robot = new Hardware(hardwareMap);
+     robot = new Hardware(hardwareMap);
     waitForStart();
 
     if (isStopRequested()) return;
 
     while (opModeIsActive()) {
-      if (gamepad1.a) {
-        robot.outtake.setPosition(0);
+      if(gamepad1.right_trigger > 0.5) {
+        robot.intake.setPower(1);
       }
+      else if (gamepad1.left_trigger>0.5) {
+        robot.intake.setPower(-1);
+      }
+      else{
+        robot.intake.setPower(0);
+      }
+      if (gamepad1.a) {
+        robot.intakeRotation.setPosition(1);
+       }
       if (gamepad1.b) {
         robot.intakeRotation.setPosition(0);
       }
     }
+
   }
 }

@@ -14,17 +14,17 @@ public class MecanumTeleOp extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Hardware robot = new Hardware(hardwareMap);
+         robot = new Hardware(hardwareMap);
 
         waitForStart();
 
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            mecanum();
-            lift();
+           // mecanum();
+            //lift();
             intakeRotation();
-            outtake();
+            //outtake();
             intake();
         }
     }
@@ -59,10 +59,10 @@ public class MecanumTeleOp extends LinearOpMode {
         robot.rightRear.setPower(rightRearPower);
     }
     public void outtake() {
-        if(gamepad1.a) {
+        if(gamepad1.x) {
             robot.outtake.setPosition(1);
         }
-        else if(gamepad1.b) {
+        else if(gamepad1.y) {
             robot.outtake.setPosition(0);
         }
     }
