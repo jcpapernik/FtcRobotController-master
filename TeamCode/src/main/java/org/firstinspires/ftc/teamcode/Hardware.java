@@ -20,8 +20,8 @@ public class Hardware {
         leftRear = hardwareMap.get(DcMotor.class, "leftRear");
         rightRear = hardwareMap.get(DcMotor.class, "rightRear");
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
-        //lift = hardwareMap.get(DcMotor.class, "lift");
-       // extend = hardwareMap.get(DcMotor.class, "extend");
+        lift = hardwareMap.get(DcMotor.class, "lift");
+        extend = hardwareMap.get(DcMotor.class, "extend");
         outtake = hardwareMap.get(Servo.class, "outtake");
         intakeRotation = hardwareMap.get(Servo.class, "intakeRotation");
         intake = hardwareMap.get(CRServo.class, "intake");

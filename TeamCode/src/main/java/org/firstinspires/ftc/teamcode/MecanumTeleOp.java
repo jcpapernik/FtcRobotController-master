@@ -25,7 +25,8 @@ public class MecanumTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
             mecanum();
-            //lift();
+            lift();
+            extend();
             intakeRotation();
             outtake();
             intake();
@@ -40,6 +41,18 @@ public class MecanumTeleOp extends LinearOpMode {
         }
         else {
             robot.lift.setPower(0);
+        }
+    }
+
+    public void extend(){
+        if (gamepad1.dpad_right){
+            robot.extend.setPower(1);
+        }
+        else if (gamepad1.dpad_left){
+            robot.extend.setPower(-1);
+        }
+        else {
+            robot.extend.setPower(0);
         }
     }
     public void mecanum(){
