@@ -1,4 +1,4 @@
-while (opModeIsActive()) {
+/*while (opModeIsActive()) {
         if (gamepad1.y){
         //move to position 0
         test_servo.setPosition(0);
@@ -15,4 +15,4 @@ while (opModeIsActive()) {
         telemetry.addData("Status", "Running");
             telemetry.update();
 
-        }
+        }*/

@@ -24,10 +24,10 @@ public class MecanumTeleOp extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-           // mecanum();
+            mecanum();
             //lift();
             intakeRotation();
-            //outtake();
+            outtake();
             intake();
         }
     }

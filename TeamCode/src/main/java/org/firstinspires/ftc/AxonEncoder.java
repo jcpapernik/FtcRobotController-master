@@ -1,4 +1,4 @@
-import com.qualcomm.robotcore.hardware.CRServo;
+/*import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class AxonEncoder
@@ -29,4 +29,4 @@ public class AxonEncoder
         }
         intakeServo.setPower(position);
     }
-}
+}*/
