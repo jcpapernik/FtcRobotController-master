@@ -1,4 +1,4 @@
-package huskylens.java;
+package org.firstinspires.ftc.teamcode;
 
 public class Arrow {
     private int xTail;

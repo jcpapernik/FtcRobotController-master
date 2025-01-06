@@ -1,6 +1,6 @@
-package huskylens.java;
+package org.firstinspires.ftc.teamcode;
 public class Block {
-    private int xPosition;
+    private int xPositio;
     private int yPosition;
     private int width;
     private int height;
