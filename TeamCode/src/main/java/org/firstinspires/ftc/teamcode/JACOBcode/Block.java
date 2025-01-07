@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.JACOBcode;
 public class Block {
     private int xPositio;
-    private int yPosition;
-    private int width;
-    private int height;
-    private int ID;
-    private boolean isLearned;
+    private final int yPosition;
+    private final int width;
+    private final int height;
+    private final int ID;
+    private final boolean isLearned;
 
     public Block(int xPosition, int yPosition, int width, int height, int ID){
         this.xPosition = xPosition;
@@ -13,11 +13,7 @@ public class Block {
         this.width = width;
         this.height = height;
         this.ID = ID;
-        if(ID > 0){
-            this.isLearned = true;
-        }else{
-            this.isLearned = false;
-        }
+        this.isLearned = ID > 0;
     }
 
     public int getXPosition(){

@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.JACOBcode;
 
 public class Arrow {
-    private int xTail;
-    private int yTail;
-    private int xHead;
-    private int yHead;
-    private int ID;
-    private boolean isLearned;
+    private final int xTail;
+    private final int yTail;
+    private final int xHead;
+    private final int yHead;
+    private final int ID;
+    private final boolean isLearned;
 
     public Arrow(int xTail, int yTail, int xHead, int yHead, int ID){
         this.xTail = xTail;
@@ -14,11 +14,7 @@ public class Arrow {
         this.xHead = xHead;
         this.yHead = yHead;
         this.ID = ID;
-        if(ID > 0){
-            this.isLearned = true;
-        }else{
-            this.isLearned = false;
-        }
+        this.isLearned = ID > 0;
     }
 
     public int getXTail(){

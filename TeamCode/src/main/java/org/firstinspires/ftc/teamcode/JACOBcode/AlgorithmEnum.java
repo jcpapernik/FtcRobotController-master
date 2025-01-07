@@ -1,4 +1,4 @@
-package huskylens.java;
+package org.firstinspires.ftc.teamcode.JACOBcode;
 public enum AlgorithmEnum {
     ALGORITHM_OBJECT_TRACKING("0100"),
     ALGORITHM_FACE_RECOGNITION("0000"),
@@ -12,7 +12,7 @@ public enum AlgorithmEnum {
 
     public final String byteID;
 
-    private AlgorithmEnum(String byteID){
+    AlgorithmEnum(String byteID){
         this.byteID = byteID;
     }
 
