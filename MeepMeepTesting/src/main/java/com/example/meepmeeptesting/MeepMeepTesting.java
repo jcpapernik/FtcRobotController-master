@@ -20,6 +20,22 @@ public class MeepMeepTesting {
                         .lineToLinearHeading(new Pose2d(58, 58, Math.toRadians(-135)))
                         .lineToSplineHeading(new Pose2d(32, 26, Math.toRadians(0)))
                         .lineTo(new Vector2d(44, 26))
+                        .addDisplacementMarker(() -> {
+                           // intakeRotation.setPosition(1);
+                        })
+                        .addDisplacementMarker(() -> {
+                          //  intake.setPower(1);
+                        })
+                        .waitSeconds(1)
+                        .addDisplacementMarker(() -> {
+                            //intakeRotation.setPosition(0);
+                          //  intake.setPower(0);
+                        })
+                        .addDisplacementMarker(() -> {
+                            //intake.setPower(-1);
+                        })
+
+                        .waitSeconds(1)
                         .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
                         .lineToSplineHeading(new Pose2d(44, 26, Math.toRadians(0)))
                         .lineTo(new Vector2d(56, 26))
