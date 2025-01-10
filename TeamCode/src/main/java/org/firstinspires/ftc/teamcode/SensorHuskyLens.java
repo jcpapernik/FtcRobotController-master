@@ -176,16 +176,16 @@ public class SensorHuskyLens extends LinearOpMode {
     }
     public void intake (int thisColorID)
     {
-        intake.setPosition(0); //set intake to pos0
+        intake.setPower(0); //set intake to power0
         if (thisColorID == 1 && isPropDetected && thisColorID != 2 && thisColorID != 3)
         //if the prop is detected and the color is blue, but not red or yellow, then set intake position
             //ID1 = Blue
             //ID2 = Red
             //ID3 = Yellow
         {
-            intake.setPosition(1);//set intake to pos1
+            intake.setPower(1);//set intake to power1
         }
-        intake.setPosition(0); //set intake to pos0
+        intake.setPower(0); //set intake to power0
 
         if (thisColorID != 1 && isPropDetected && thisColorID == 2 && thisColorID != 3)
         //if the prop is detected and the color is red, but not blue or yellow, then set intake position
@@ -193,9 +193,9 @@ public class SensorHuskyLens extends LinearOpMode {
         //ID2 = Red
         //ID3 = Yellow
         {
-            intake.setPosition(1); //set intake to pos1
+            intake.setPower(1); //set intake to power1
         }
-        intake.setPosition(0); //set intake to pos0
+        intake.setPower(0); //set intake to power0
 
         if (thisColorID != 1 && isPropDetected && thisColorID != 2 && thisColorID == 3)
         //if the prop is detected and the color is yellow, but not red or blue, then set intake position
@@ -203,9 +203,9 @@ public class SensorHuskyLens extends LinearOpMode {
         //ID2 = Red
         //ID3 = Yellow
         {
-            intake.setPosition(1); //set intake to pos1
+            intake.setPower(1); //set intake to power1
         }
-        intake.setPosition(0); //set intake to pos0
+        intake.setPower(0); //set intake to power0
     }
 }
 
