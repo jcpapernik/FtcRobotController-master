@@ -55,6 +55,7 @@ public class RedAuto extends LinearOpMode {
                     intake.setPower(-1);
                 })
 
+
                 .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
                 .lineToSplineHeading(new Pose2d(44, 26, Math.toRadians(0)))
                 .lineTo(new Vector2d(56, 26))
