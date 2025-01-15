@@ -31,6 +31,7 @@ public class MecanumTeleOp extends LinearOpMode {
             outtake();
             intakeRotation();
             intake();
+            Hang();
         }
     }
 
@@ -116,5 +117,14 @@ public class MecanumTeleOp extends LinearOpMode {
         } else {
             robot.intake.setPower(0); // Stop the intake
         }
+    }
+    public void Hang() {
+        if (gamepad1.left_bumper){
+            robot.hang.setPosition(1);
+        }
+        if (gamepad1.right_bumper){
+            robot.hang.setPosition(0);
+        }
+
     }
 }

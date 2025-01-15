@@ -12,6 +12,8 @@ public class Hardware {
     public DcMotor lift;
     public DcMotor extend;
     public Servo outtake, intakeRotation;
+
+    public Servo hang;
     public CRServo intake;
 
     public Hardware(HardwareMap hardwareMap) {
@@ -25,6 +27,7 @@ public class Hardware {
         outtake = hardwareMap.get(Servo.class, "outtake");
         intakeRotation = hardwareMap.get(Servo.class, "intakeRotation");
         intake = hardwareMap.get(CRServo.class, "intake");
+        hang = hardwareMap.get(Servo.class,"hang");
 
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRear.setDirection(DcMotorSimple.Direction.REVERSE);

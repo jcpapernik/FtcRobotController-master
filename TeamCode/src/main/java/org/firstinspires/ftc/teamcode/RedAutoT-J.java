@@ -1,6 +1,9 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 public class RedAutoT-J extends
+@Disabled
 
 SensorHuskyLens {
     private int red; //color ID

@@ -29,7 +29,7 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+*//*
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.dfrobot.HuskyLens;
@@ -59,7 +59,7 @@ import java.util.concurrent.TimeUnit;
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
- */
+ *
 @TeleOp(name = "Sensor: HuskyLens", group = "Sensor")
 @Disabled
 public class SensorHuskyLens extends LinearOpMode {
@@ -78,12 +78,12 @@ public class SensorHuskyLens extends LinearOpMode {
          * This sample rate limits the reads solely to allow a user time to observe
          * what is happening on the Driver Station telemetry.  Typical applications
          * would not likely rate limit.
-         */
+         *
         Deadline rateLimit = new Deadline(READ_PERIOD, TimeUnit.SECONDS);
 
         /*
          * Immediately expire so that the first time through we'll do the read.
-         */
+         *
         rateLimit.expire();
 
         /*
@@ -93,7 +93,7 @@ public class SensorHuskyLens extends LinearOpMode {
          * the hardware map.  However, sometimes it's unclear why a device reports as
          * failing on initialization.  In the case of this device, it's because the
          * call to knock() failed.
-         */
+         *
         if (!huskyLens.knock()) {
             telemetry.addData(">>", "Problem communicating with " + huskyLens.getDeviceName());
         } else {
@@ -114,7 +114,7 @@ public class SensorHuskyLens extends LinearOpMode {
          * found in the enumeration HuskyLens.Algorithm.
          *
          * Other algorithm choices for FTC might be: OBJECT_RECOGNITION, COLOR_RECOGNITION or OBJECT_CLASSIFICATION.
-         */
+         *
         huskyLens.selectAlgorithm(HuskyLens.Algorithm.COLOR_RECOGNITION);
 
         telemetry.update();
@@ -125,7 +125,7 @@ public class SensorHuskyLens extends LinearOpMode {
          * for testing may be found at https://wiki.dfrobot.com/HUSKYLENS_V1.0_SKU_SEN0305_SEN0336#target_20.
          *
          * Note again that the device only recognizes the 36h11 family of tags out of the box.
-         */
+         *
         while (opModeIsActive()) {
             if (!rateLimit.hasExpired()) {
                 continue;
@@ -140,7 +140,7 @@ public class SensorHuskyLens extends LinearOpMode {
              * assign them to objects.
              *
              * Returns an empty array if no objects are seen.
-             */
+             *
             HuskyLens.Block[] blocks = huskyLens.blocks();
             telemetry.addData("Block count", blocks.length);
             int thisColorID;
@@ -154,7 +154,7 @@ public class SensorHuskyLens extends LinearOpMode {
                  * - blocks[i].id                           (Color ID)
                  *
                  * These values have Java type int (integer).
-                 */
+                 *
                 this.isPropDetected = true;
                 thisColorID = blocks[i].id;
                 telemetry.addData("This Color ID", thisColorID);     // display that Color ID
@@ -209,3 +209,4 @@ public class SensorHuskyLens extends LinearOpMode {
     }
 }
 
+*/

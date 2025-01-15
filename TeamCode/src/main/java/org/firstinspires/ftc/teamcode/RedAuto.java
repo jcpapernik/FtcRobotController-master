@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
@@ -21,7 +22,7 @@ public class RedAuto extends LinearOpMode {
      DcMotor extend;
      Servo outtake, intakeRotation;
      CRServo intake;
-    Pose2d startPose = new Pose2d(-40, 64,Math.toRadians(90));
+    Pose2d startPose = new Pose2d(36, 60, Math.toRadians(180));
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -31,39 +32,112 @@ public class RedAuto extends LinearOpMode {
         outtake = hardwareMap.get(Servo.class, "outtake");
         intakeRotation = hardwareMap.get(Servo.class, "intakeRotation");
         intake = hardwareMap.get(CRServo.class, "intake");
+        lift.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        drive.setPoseEstimate(startPose);
+
 
         waitForStart();
 
         if (isStopRequested()) return;
 
         TrajectorySequence trajSeq  = drive.trajectorySequenceBuilder(startPose)
-                .lineToLinearHeading(new Pose2d(58, 58, Math.toRadians(-135)))
-                .lineToSplineHeading(new Pose2d(32, 26, Math.toRadians(0)))
-                .lineTo(new Vector2d(44, 26))
-                .addDisplacementMarker(() -> {
-                    intakeRotation.setPosition(1);
+                .addTemporalMarker(() -> {
+                    intakeRotation.setPosition(.5);
+                     lift.setPower(1);
                 })
-                .addDisplacementMarker(() -> {
-                    intake.setPower(1);
+                .strafeLeft(4)
+
+                .lineToLinearHeading(new Pose2d(54, 64, Math.toRadians(-135)))
+                //.waitSeconds(.2)
+                .addTemporalMarker(() -> {
+                    lift.setPower(0);
+                    outtake.setPosition(1);
                 })
+
                 .waitSeconds(1)
-                .addDisplacementMarker(() -> {
-                    intakeRotation.setPosition(0);
-                    intake.setPower(0);
-                })
-                .addDisplacementMarker(() -> {
-                    intake.setPower(-1);
+                .addTemporalMarker(() -> {
+                    outtake.setPosition(0);
+                    lift.setPower(-1);
                 })
 
+
+                .lineToSplineHeading(new Pose2d(20, 26, Math.toRadians(0)))
+
+                .addTemporalMarker(()->{
+                    //intakeRotation.setPosition(0);
+                    //intake.setPower(1)
+                })
+
+                .lineTo(new Vector2d(44, 26))
+
+
+                .UNSTABLE_addTemporalMarkerOffset(.5,()->{
+                    //intakeRotation.setPosition(1);
+                    //intake.setPower(0)
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1,()->{
+                    //intake.setPower(-1)
+                })
+                .UNSTABLE_addTemporalMarkerOffset(2,()->{
+                    //intakeRotation.setPosition(.5);
+                    // lift.setPower(1);
+                })
 
                 .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
-                .lineToSplineHeading(new Pose2d(44, 26, Math.toRadians(0)))
+                .addTemporalMarker(() -> {
+                    // lift.setPower(0);
+                    //outtake.setPosition(1);
+                })
+
+                .waitSeconds(.5)
+                .addTemporalMarker(() -> {
+                    //outtake.setPosition(0);
+                    //lift.setPower(-1);
+                })
+                .lineToSplineHeading(new Pose2d(48, 26, Math.toRadians(0)))
+                .addTemporalMarker(()->{
+                    //intakeRotation.setPosition(0);
+                    //intake.setPower(1)
+                })
                 .lineTo(new Vector2d(56, 26))
+                .UNSTABLE_addTemporalMarkerOffset(.5,()->{
+                    //intakeRotation.setPosition(1);
+                    //intake.setPower(0)
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1,()->{
+                    //intake.setPower(-1)
+                })
+                .UNSTABLE_addTemporalMarkerOffset(2,()->{
+                    //intakeRotation.setPosition(.5);
+                    // lift.setPower(1);
+                })
                 .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
+                .addTemporalMarker(() -> {
+                    // lift.setPower(0);
+                    //outtake.setPosition(1);
+                })
+
+                .waitSeconds(.5)
+                .addTemporalMarker(() -> {
+                    //outtake.setPosition(0);
+                    //lift.setPower(-1);
+                })
                 .lineToSplineHeading(new Pose2d(56, 26, Math.toRadians(0)))
+                .addTemporalMarker(()->{
+                    //intakeRotation.setPosition(0);
+                    //intake.setPower(1)
+                })
                 .lineTo(new Vector2d(68, 26))
-                .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
-                .lineToSplineHeading(new Pose2d(24, 0, Math.toRadians(0)))
+                .UNSTABLE_addTemporalMarkerOffset(.5,()->{
+                    //intakeRotation.setPosition(1);
+                    //intake.setPower(0)
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1,()->{
+                    //intake.setPower(-1)
+                })
+                .lineToSplineHeading(new Pose2d(24, 10, Math.toRadians(0)))
+
                 .build();
 
         drive.followTrajectorySequence(trajSeq);
