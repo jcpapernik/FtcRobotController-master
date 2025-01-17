@@ -13,11 +13,14 @@ import org.firstinspires.ftc.teamcode.Hardware;
 @TeleOp
 public class MecanumTeleOp extends LinearOpMode {
     Hardware robot;
+    double speedOffset = 1;
 
     @Override
     public void runOpMode() throws InterruptedException {
         // Initialize the robot hardware
         robot = new Hardware(hardwareMap);
+
+
 
         waitForStart();
 
@@ -25,13 +28,16 @@ public class MecanumTeleOp extends LinearOpMode {
 
         // Main teleop loop
         while (opModeIsActive()) {
+
             mecanum();
             lift();
             extend();
             outtake();
             intakeRotation();
             intake();
-            Hang();
+            telemetry.update();
+
+
         }
     }
 
@@ -52,10 +58,14 @@ public class MecanumTeleOp extends LinearOpMode {
         double rightFrontPower = (y - x - rx) / denominator;
         double rightRearPower = (y + x - rx) / denominator;
 
-        robot.leftFront.setPower(leftFrontPower);
-        robot.leftRear.setPower(leftRearPower);
-        robot.rightFront.setPower(rightFrontPower);
-        robot.rightRear.setPower(rightRearPower);
+        robot.leftFront.setPower(leftFrontPower * speedOffset);
+        robot.leftRear.setPower(leftRearPower * speedOffset);
+        robot.rightFront.setPower(rightFrontPower * speedOffset);
+        robot.rightRear.setPower(rightRearPower * speedOffset);
+
+
+        telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
+        telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftRearPower, rightRearPower);
     }
 
     /**
@@ -64,10 +74,13 @@ public class MecanumTeleOp extends LinearOpMode {
     public void lift() {
         if (gamepad1.dpad_up) {
             robot.lift.setPower(1); // Move lift up
+            speedOffset =.75;
         } else if (gamepad1.dpad_down) {
             robot.lift.setPower(-1); // Move lift down
+            speedOffset =.9;
         } else {
             robot.lift.setPower(0); // Stop the lift
+            speedOffset = 1;
         }
     }
 
@@ -103,6 +116,10 @@ public class MecanumTeleOp extends LinearOpMode {
             robot.intakeRotation.setPosition(1); // Set intake rotation to position 1
         } else if (gamepad1.b) {
             robot.intakeRotation.setPosition(0); // Set intake rotation to position 0
+        } else if (gamepad1.right_bumper) {
+            robot.intakeRotation.setPosition(.4);
+
+
         }
     }
 
@@ -118,13 +135,7 @@ public class MecanumTeleOp extends LinearOpMode {
             robot.intake.setPower(0); // Stop the intake
         }
     }
-    public void Hang() {
-        if (gamepad1.left_bumper){
-            robot.hang.setPosition(1);
-        }
-        if (gamepad1.right_bumper){
-            robot.hang.setPosition(0);
-        }
 
-    }
+
+
 }

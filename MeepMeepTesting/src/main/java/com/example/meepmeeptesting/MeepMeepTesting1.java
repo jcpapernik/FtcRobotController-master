@@ -88,7 +88,7 @@ public class MeepMeepTesting1 {
                             //outtake.setPosition(1);
                         })
 
-                        .waitSeconds(.5)
+                       /* .waitSeconds(.5)
                         .addTemporalMarker(() -> {
                             //outtake.setPosition(0);
                             //lift.setPower(-1);
@@ -106,7 +106,7 @@ public class MeepMeepTesting1 {
                         .addTemporalMarkerOffset(1,()->{
                             //intake.setPower(-1)
                         })
-                        .lineToSplineHeading(new Pose2d(24, 10, Math.toRadians(0)))
+                        .lineToSplineHeading(new Pose2d(24, 10, Math.toRadians(0)))*/
 
                         .build());
 

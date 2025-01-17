@@ -36,14 +36,14 @@ public class MeepMeepTesting {
                         })
 
                         .waitSeconds(1)
-                        .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
+                       /* .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
                         .lineToSplineHeading(new Pose2d(44, 26, Math.toRadians(0)))
                         .lineTo(new Vector2d(56, 26))
                         .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
                         .lineToSplineHeading(new Pose2d(56, 26, Math.toRadians(0)))
                         .lineTo(new Vector2d(68, 26))
                         .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
-                        .lineToSplineHeading(new Pose2d(24, 0, Math.toRadians(0)))
+                        .lineToSplineHeading(new Pose2d(24, 0, Math.toRadians(0)))*/
 
                         .build());
 

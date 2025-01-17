@@ -47,10 +47,10 @@ public class Auto extends LinearOpMode {
                 })
                 .strafeLeft(4)
 
-                .lineToLinearHeading(new Pose2d(54, 64, Math.toRadians(-135)))
+                .lineToLinearHeading(new Pose2d(53, 64, Math.toRadians(-135)))
                 .addTemporalMarker(() -> {
-                    lift.setPower(0);
                     outtake.setPosition(1);
+                    lift.setPower(.1);
                 })
 
                 .waitSeconds(1)
@@ -78,12 +78,13 @@ public class Auto extends LinearOpMode {
                 })
                 .UNSTABLE_addTemporalMarkerOffset(2.5,()->{
                     intakeRotation.setPosition(.5);
-                     lift.setPower(1);
+                     lift.setPower(.8);
                     intake.setPower(0);
 
                 })
+                .back(5)
 
-                .lineToSplineHeading(new Pose2d(52, 66, Math.toRadians(-135)))
+                .lineToSplineHeading(new Pose2d(52, 65, Math.toRadians(-135)))
                 .addTemporalMarker(() -> {
                     outtake.setPosition(1);
 
@@ -101,35 +102,38 @@ public class Auto extends LinearOpMode {
                     outtake.setPosition(0);
                     lift.setPower(-1);
                 })
-                /*.lineToSplineHeading(new Pose2d(48, 26, Math.toRadians(0)))
+                .lineToSplineHeading(new Pose2d(15, 24, Math.toRadians(0)))
                 .addTemporalMarker(()->{
-                    //intakeRotation.setPosition(0);
-                    //intake.setPower(1)
+                    intakeRotation.setPosition(1);
+                    intake.setPower(-1);
                 })
-                .lineTo(new Vector2d(56, 26))
-                .UNSTABLE_addTemporalMarkerOffset(.5,()->{
-                    //intakeRotation.setPosition(1);
-                    //intake.setPower(0)
+                .lineTo(new Vector2d(25, 24))
+                .UNSTABLE_addTemporalMarkerOffset(.7,()->{
+            intakeRotation.setPosition(0);
+        })
+                .UNSTABLE_addTemporalMarkerOffset(1.5,()->{
+                    intake.setPower(1);
                 })
-                .UNSTABLE_addTemporalMarkerOffset(1,()->{
-                    //intake.setPower(-1)
+                .UNSTABLE_addTemporalMarkerOffset(2.5,()->{
+                    intakeRotation.setPosition(.5);
+                    lift.setPower(.8);
+                    intake.setPower(0);
+
                 })
-                .UNSTABLE_addTemporalMarkerOffset(2,()->{
-                    //intakeRotation.setPosition(.5);
-                    // lift.setPower(1);
-                })
-                .lineToSplineHeading(new Pose2d(58, 58, Math.toRadians(-135)))
+                .back(5)
+               .lineToSplineHeading(new Pose2d(53, 64, Math.toRadians(-135)))
                 .addTemporalMarker(() -> {
-                    // lift.setPower(0);
-                    //outtake.setPosition(1);
+                     lift.setPower(1);
+                    outtake.setPosition(1);
                 })
 
                 .waitSeconds(.5)
                 .addTemporalMarker(() -> {
-                    //outtake.setPosition(0);
-                    //lift.setPower(-1);
+                    outtake.setPosition(0);
+                    lift.setPower(-1);
                 })
-                .lineToSplineHeading(new Pose2d(56, 26, Math.toRadians(0)))
+                .waitSeconds(2)
+                /*.lineToSplineHeading(new Pose2d(56, 26, Math.toRadians(0)))
                 .addTemporalMarker(()->{
                     //intakeRotation.setPosition(0);
                     //intake.setPower(1)
