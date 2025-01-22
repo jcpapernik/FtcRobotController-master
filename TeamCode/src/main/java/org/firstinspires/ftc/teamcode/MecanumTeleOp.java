@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Hardware;
 @TeleOp
 public class MecanumTeleOp extends LinearOpMode {
     Hardware robot;
-    double speedOffset = 1;
+    //double speedOffset = .8;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -58,10 +58,10 @@ public class MecanumTeleOp extends LinearOpMode {
         double rightFrontPower = (y - x - rx) / denominator;
         double rightRearPower = (y + x - rx) / denominator;
 
-        robot.leftFront.setPower(leftFrontPower * speedOffset);
-        robot.leftRear.setPower(leftRearPower * speedOffset);
-        robot.rightFront.setPower(rightFrontPower * speedOffset);
-        robot.rightRear.setPower(rightRearPower * speedOffset);
+        robot.leftFront.setPower(leftFrontPower);// * speedOffset);
+        robot.leftRear.setPower(leftRearPower);// * speedOffset);
+        robot.rightFront.setPower(rightFrontPower);// * speedOffset);
+        robot.rightRear.setPower(rightRearPower);// * speedOffset);
 
 
         telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
@@ -74,13 +74,14 @@ public class MecanumTeleOp extends LinearOpMode {
     public void lift() {
         if (gamepad1.dpad_up) {
             robot.lift.setPower(1); // Move lift up
-            speedOffset =.75;
+           // speedOffset =.6;
+            robot.intakeRotation.setPosition(.4);
         } else if (gamepad1.dpad_down) {
             robot.lift.setPower(-1); // Move lift down
-            speedOffset =.9;
+           // speedOffset =.7;
         } else {
             robot.lift.setPower(0); // Stop the lift
-            speedOffset = 1;
+           // speedOffset = 1;
         }
     }
 
@@ -128,7 +129,8 @@ public class MecanumTeleOp extends LinearOpMode {
      */
     public void intake() {
         if (gamepad1.right_trigger > 0.5) {
-            robot.intake.setPower(1); // Run intake forward
+            robot.intake.setPower(1); // Run spit out
+
         } else if (gamepad1.left_trigger > 0.5) {
             robot.intake.setPower(-1); // Run intake backward
         } else {
