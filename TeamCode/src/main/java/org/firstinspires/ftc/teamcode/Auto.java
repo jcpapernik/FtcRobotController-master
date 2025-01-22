@@ -26,6 +26,8 @@ public class Auto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+
+        // Hardware initialization
         lift = hardwareMap.get(DcMotor.class, "lift");
         extend = hardwareMap.get(DcMotor.class, "extend");
         outtake = hardwareMap.get(Servo.class, "outtake");
@@ -95,7 +97,6 @@ public class Auto extends LinearOpMode {
                     lift.setPower(0);
 
                 })
-
 
                 .waitSeconds(.5)
                 .addTemporalMarker(() -> {
