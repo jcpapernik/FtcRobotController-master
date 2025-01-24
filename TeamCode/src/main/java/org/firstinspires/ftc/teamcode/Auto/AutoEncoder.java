@@ -23,8 +23,8 @@ public class AutoEncoder extends LinearOpMode {
     Pose2d startPose = new Pose2d(36, 60, Math.toRadians(180));
 
     // Motor configuration constants
-    static final double TICKS_PER_INCH = 159.2; // Calculated
-    static final int MAX_LIFT_TICKS = (int) (38.4 * TICKS_PER_INCH); // Max extension
+    static final double TICKS_PER_INCH = (153.9710145); // Calculated
+    static final int MAX_LIFT_TICKS = (int) (37 * TICKS_PER_INCH); // Max extension
     static final int MIN_LIFT_TICKS = 0; // Fully retracted
     static final double COUNTS_PER_INCH = TICKS_PER_INCH;
 
@@ -42,7 +42,7 @@ public class AutoEncoder extends LinearOpMode {
         intake = hardwareMap.get(CRServo.class, "intake");
         lift.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        // Configure lift motor
+        // Configure lift mot`or
         lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -50,13 +50,13 @@ public class AutoEncoder extends LinearOpMode {
         drive.setPoseEstimate(startPose);
 
         // Define target heights in inches
-        int LIFT_HIGH = 36; // Example: 36 inches
+        int LIFT_HIGH = 37; // Example: 36 inches
         int LIFT_LOW = 0;
 
         // Define the trajectory sequence (moved here before waitForStart)
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(startPose)
                 .addTemporalMarker(() -> {
-                    intakeRotation.setPosition(0.5);
+                   intakeRotation.setPosition(0.5);
                     liftTargetPosition = LIFT_HIGH; // Set target for high lift
                 })
                 .strafeLeft(4)
@@ -70,11 +70,14 @@ public class AutoEncoder extends LinearOpMode {
                     outtake.setPosition(0);
                     liftTargetPosition = LIFT_LOW; // Lower lift
                 })
+
+
                 .lineToSplineHeading(new Pose2d(5, 24, Math.toRadians(0)))
                 .addTemporalMarker(() -> {
                     intakeRotation.setPosition(1);
                     intake.setPower(-1);
                 })
+
                 .lineTo(new Vector2d(20, 24))
                 .UNSTABLE_addTemporalMarkerOffset(0.7, () -> {
                     intakeRotation.setPosition(0);
@@ -86,22 +89,53 @@ public class AutoEncoder extends LinearOpMode {
                     intakeRotation.setPosition(0.5);
                     liftTargetPosition = LIFT_HIGH; // Set to high lift again
                     intake.setPower(0);
+
                 })
                 .back(5)
+
                 .lineToSplineHeading(new Pose2d(52, 65, Math.toRadians(-135)))
                 .addTemporalMarker(() -> {
                     outtake.setPosition(1);
                     liftTargetPosition = LIFT_HIGH; // Keep lift at high position
                 })
                 .waitSeconds(0.2)
-                .addTemporalMarker(() -> {
-                    lift.setPower(0); // Ensure the motor stops
-                })
-                .waitSeconds(0.5)
+
+
+                .waitSeconds(.5)
                 .addTemporalMarker(() -> {
                     outtake.setPosition(0);
-                    liftTargetPosition = LIFT_LOW; // Lower lift to its lowest point
+                    liftTargetPosition = LIFT_LOW; // Lower lift
                 })
+                .lineToSplineHeading(new Pose2d(15, 26, Math.toRadians(0)))
+                .addTemporalMarker(()->{
+                    intakeRotation.setPosition(1);
+                    intake.setPower(-1);
+                })
+                .lineTo(new Vector2d(25, 26))
+                .UNSTABLE_addTemporalMarkerOffset(.7,()->{
+                    intakeRotation.setPosition(0);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(1.5,()->{
+                    intake.setPower(1);
+                })
+                .UNSTABLE_addTemporalMarkerOffset(2.5,()->{
+                    intakeRotation.setPosition(.5);
+                    liftTargetPosition = LIFT_HIGH; // Keep lift at high position
+                    intake.setPower(0);
+
+                })
+                .back(5)
+                .lineToSplineHeading(new Pose2d(53, 64, Math.toRadians(-135)))
+                .addTemporalMarker(() -> {
+                    outtake.setPosition(1);
+                })
+
+                .waitSeconds(.5)
+                .addTemporalMarker(() -> {
+                    outtake.setPosition(0);
+                    liftTargetPosition = LIFT_LOW; // Lower lift
+                })
+                .waitSeconds(2)
                 .build();
 
         waitForStart(); // Wait for the start of the match
@@ -122,6 +156,7 @@ public class AutoEncoder extends LinearOpMode {
             telemetry.addData("heading", Math.toDegrees(poseEstimate.getHeading()));
 
             // Add telemetry for lift position
+            telemetry.addData("Lift Position (Inches)", lift.getCurrentPosition() / TICKS_PER_INCH);
             telemetry.addData("Ticks", lift.getCurrentPosition());
             telemetry.update();
         }

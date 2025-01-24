@@ -1,17 +1,30 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp
 public class MecanumTeleOp2driver extends LinearOpMode {
     Hardware robot;
+
     double speedOffset = .8;
+    static final double TICKS_PER_INCH = 153.9710145; // Adjust to match your lift's configuration
+    static final int MAX_LIFT_TICKS = (int) (36 * TICKS_PER_INCH); // Max lift extension (in inches)
+    static final int MIN_LIFT_TICKS = 0; // Fully retracted
+    int liftTargetPosition = 0; // Tracks the lift's current target position
 
     @Override
     public void runOpMode() throws InterruptedException {
         // Initialize the robot hardware
         robot = new Hardware(hardwareMap);
+        // Ensure the lift motor retracts and encoder is reset
+        robot.lift.setPower(-1); // Move lift downward
+        sleep(500); // Allow the motor to retract for 0.5 seconds (adjust time as needed)
+        robot.lift.setPower(0); // Stop the motor
+        robot.lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Reset encoder
+        robot.lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER); // Use encoder mode for teleop
 
 
 
@@ -21,6 +34,7 @@ public class MecanumTeleOp2driver extends LinearOpMode {
 
         // Main teleop loop
         while (opModeIsActive()) {
+
 
             mecanum();
             lift();
@@ -37,6 +51,7 @@ public class MecanumTeleOp2driver extends LinearOpMode {
     /**
      * Controls the mecanum drive.
      */
+
     public void mecanum() {
         double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
         double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
@@ -64,7 +79,28 @@ public class MecanumTeleOp2driver extends LinearOpMode {
     /**
      * Controls the lift motor.
      */
+
     public void lift() {
+        if (gamepad2.dpad_up && liftTargetPosition < MAX_LIFT_TICKS) {
+            liftTargetPosition += (int) (1 * TICKS_PER_INCH); // Increase position by 1 inch
+        } else if (gamepad2.dpad_down && liftTargetPosition > MIN_LIFT_TICKS) {
+            liftTargetPosition -= (int) (1 * TICKS_PER_INCH); // Decrease position by 1 inch
+        }
+
+        // Set the lift to move to the target position
+        robot.lift.setTargetPosition(liftTargetPosition);
+        robot.lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lift.setPower(1.0); // Adjust power as needed
+
+        // Keep the lift position stable when no input is given
+        if (!robot.lift.isBusy()) {
+            robot.lift.setPower(0.1); // Maintain slight holding power
+        }
+        telemetry.addData("Lift Position (Ticks)", robot.lift.getCurrentPosition());
+        telemetry.addData("Lift Position (Inches)", robot.lift.getCurrentPosition() / TICKS_PER_INCH);
+        telemetry.addData("Lift Target (Inches)", liftTargetPosition / TICKS_PER_INCH);
+    }
+    /*public void lift() {
         if (gamepad2.dpad_up) {
             robot.lift.setPower(1); // Move lift up
             speedOffset =.6;
@@ -76,7 +112,7 @@ public class MecanumTeleOp2driver extends LinearOpMode {
             robot.lift.setPower(0); // Stop the lift
             speedOffset = .8;
         }
-    }
+    }*/
 
     /**
      * Controls the extension motor.
